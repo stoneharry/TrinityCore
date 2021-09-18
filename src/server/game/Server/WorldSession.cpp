@@ -139,6 +139,7 @@ WorldSession::WorldSession(uint32 id, std::string&& name, std::shared_ptr<WorldS
     _timeSyncNextCounter(0),
     _timeSyncTimer(0),
     _calendarEventCreationCooldown(0),
+    _addonMessageReceiveCount(0),
     _gameClient(new GameClient(this))
 {
     memset(m_Tutorials, 0, sizeof(m_Tutorials));
@@ -421,6 +422,8 @@ bool WorldSession::Update(uint32 diff, PacketFilter& updater)
     }
 
     TC_METRIC_VALUE("processed_packets", processedPackets);
+    TC_METRIC_VALUE("addon_messages", _addonMessageReceiveCount.load());
+    _addonMessageCount = 0;
 
     _recvQueue.readd(requeuePackets.begin(), requeuePackets.end());
 

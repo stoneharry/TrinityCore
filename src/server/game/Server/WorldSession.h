@@ -1128,6 +1128,8 @@ class TC_GAME_API WorldSession
         AsyncCallbackProcessor<TransactionCallback> _transactionCallbacks;
         AsyncCallbackProcessor<SQLQueryHolderCallback> _queryHolderProcessor;
 
+        std::atomic<uint32> _addonMessageReceiveCount;
+
     friend class World;
     protected:
         class DosProtection

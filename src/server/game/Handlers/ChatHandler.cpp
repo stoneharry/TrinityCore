@@ -276,6 +276,10 @@ void WorldSession::HandleMessagechatOpcode(WorldPacket& recvData)
         if (!ValidateHyperlinksAndMaybeKick(msg))
             return;
     }
+    else
+    {
+        ++_addonMessageCount;
+    }
 
     switch (type)
     {
